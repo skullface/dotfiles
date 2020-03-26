@@ -1,0 +1,28 @@
+#  ———————————————————————————————————————————————————————————————————————————
+#  Dev environment
+#  ———————————————————————————————————————————————————————————————————————————
+
+alias atom="atom ."
+
+# Update/reload git configs
+alias gitedit="atom ~/.gitconfig"
+
+# Update/reload shell configs
+alias reloadshell="exec ${SHELL} -l"
+alias editbash="atom ~/.bash_profile"
+alias reloadbash='source ~/.bash_profile && echo "Done!"'
+alias editzsh="atom ~/.zshrc"
+alias reload='source ~/.zshrc && echo -e "$fg_bold[yellow]   nice~ 👌"'
+
+# Homebrew helpers
+alias br="brew update"
+
+# Remove .DS_Store, mine enemy!
+alias dstore="find . -name '.DS_Store' -type f -delete"
+
+# Edit /etc/hosts file
+alias hosts="atom /etc/hosts"
+
+# Open/close programs to start coding 🤘
+alias dev="open -a 'Atom Beta'"
+alias devv="pkill 'Atom Beta'"

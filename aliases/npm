@@ -1,0 +1,11 @@
+#  ———————————————————————————————————————————————————————————————————————————
+#  NPM
+#  ———————————————————————————————————————————————————————————————————————————
+
+# Initialize NPM
+alias nin="npm init"
+
+# NPM helpers
+alias ni="npm install"
+alias nu="npm update"
+alias nun="npm uninstall"

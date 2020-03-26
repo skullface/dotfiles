@@ -1,0 +1,30 @@
+#  ———————————————————————————————————————————————————————————————————————————
+#  Miscellaneous
+#  ———————————————————————————————————————————————————————————————————————————
+
+# youtube-dl 📼🖤
+alias rip="youtube-dl"
+alias ripVideo="youtube-dl -f 'bestvideo' --recode-video mp4"
+alias ripAudio="youtube-dl -f 'bestaudio' --recode-video mp4"
+alias subs="youtube-dl --recode-video mp4 --write-sub"
+
+# Internet stuff
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# Open/close programs for video meetings
+alias mtg="open -a 'Audio Hijack' && open -a 'Logitech Camera Settings' && open -a Zoom"
+alias mtgEnd="pkill 'Audio Hijack' && pkill 'Logitech Camera Settings' && pkill Zoom"
+
+# Navigation helpers
+alias ..="cd .."
+alias ls="ls -GFh"
+
+# WHOIS lookup 🔍
+# Use: `whois <domain.com>`
+function whois() {
+  command whois $(echo $1 | sed -e 's|https?://||' -e 's|/||g')
+}
+
+# Close Chrome
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"

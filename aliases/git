@@ -1,0 +1,60 @@
+#  ———————————————————————————————————————————————————————————————————————————
+#  Git
+#  ———————————————————————————————————————————————————————————————————————————
+
+# Initialize Git
+alias gin="git init"
+
+# Switch to source of truth branch & make sure it’s up to date with the remote
+alias m="git checkout master && git pull origin master"
+alias ghp="git checkout gh-pages && git pull origin gh-pages"
+
+# 🧂-N-Pepa
+alias pull="git pull"
+alias push="git push"
+alias pushf="git push --force"
+
+# Commit helpers
+alias commit="git commit -m"
+alias amend="git commit --amend -m"
+
+# Set remote URL
+alias remote="git remote add origin"
+alias remoteChange="git remote set-url origin"
+
+# Status and history helpers
+alias status="git status"
+alias last="git log -1 HEAD"
+alias hist="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+alias histSHA="git --no-pager log --oneline"
+
+# Tell your local changes to fuck off by resetting to the remote
+# Use: `gitfucked <BRANCH>`
+function gitfucked {
+  git fetch origin && git reset --hard origin/$1
+}
+
+# Interactive rebase helper
+# Use: `rebase <# of commits>`
+function rebase {
+  git rebase -i HEAD~${1:?"Specify the number of commits to go back in time."}
+}
+
+# Rebase master
+alias rebaseM="git fetch && git rebase origin/master"
+
+# Rebase to time travel 🗓
+alias redate="git rebase --committer-date-is-author-date"
+
+# Stash helpers
+alias stash="git stash"
+alias stash+="git stash pop"
+alias stash-="git stash drop"
+
+# Branch helpers
+# Use: `command <BRANCH>`
+alias new="git checkout -b"
+alias switch="git checkout"
+alias rename="git branch -m"
+alias delete="git branch -d"
+alias Delete="git branch -D"
