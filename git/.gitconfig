@@ -1,0 +1,21 @@
+[user]
+	name = Jessica Paoli
+	email = skullface@github.com
+[github]
+	user = skullface
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/skullface/Personal/dotfiles/git/.gitignore
+	editor = vim
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[merge]
+	conflictstyle = diff3
+[help]
+	autocorrect = 1
