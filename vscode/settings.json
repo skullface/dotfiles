@@ -1,0 +1,28 @@
+{
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.minimap.enabled": false,
+  "editor.renderControlCharacters": false,
+  "workbench.iconTheme": "vs-minimal",
+  "window.zoomLevel": 0,
+  "git.confirmSync": false,
+  "todo-tree.tree.showScanModeButton": false,
+  "workbench.sideBar.location": "right",
+  "workbench.colorTheme": "GitHub Dark",
+  "editor.fontFamily": "Sauce Code Pro Nerd Font Complete, Source Code Pro, Inconsolata, Menlo, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "gitTreeCompare.diffMode": "full",
+  "atomKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.trimAutoWhitespace": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "files.exclude": {
+    "**/*.build": true,
+    "**/*.git": true,
+    "**/*.log": true,
+    "**/.DS_Store": true
+  }
+}
