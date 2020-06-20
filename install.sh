@@ -35,8 +35,8 @@ echo -e "\\n\\n📦 Installing apps and CLI packages…"
 echo "=================================================="
 brew bundle
 
-echo -e "\\n=================================================="
-echo "🧹 Cleaning up…"
+echo -e "\\n\\n=================================================="
+echo "🚮 Cleaning up any old brews or casks…"
 echo "=================================================="
 brew cleanup
 
@@ -57,7 +57,7 @@ FONTS=(
 brew cask install ${FONTS[@]}
 
 # NVM
-echo -e "\\n\\n💚 Installing NVM…"
+echo -e "\\n\\n💚 Installing NVM and setting Node version…"
 echo "=================================================="
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
