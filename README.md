@@ -3,12 +3,8 @@ This dotfiles were written for my personal setup and workflows. You’re welcome
 ### new computer? owo let’s fucking go
 
 * Download Xcode from the Mac App Store
-* Install Xcode Command Line Tools
-  ```shell
-  $ xcode-select --install
-  ```
 * Download [latest Python](https://www.python.org/downloads) and open it to install
-* Run my custom install script~
+* Run the custom install script~
   ```shell
   $ mkdir Personal; cd Personal; git clone git@github.com:skullface/dotfiles.git && cd dotfiles && zsh install.sh
   ```
