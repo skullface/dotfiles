@@ -15,7 +15,7 @@ brew "thefuck"
 brew "wget"
 brew "youtube-dl"
 
-# Required
+# Required apps
 cask "1password"
 cask "firefox"
 cask "google-chrome"
@@ -23,12 +23,12 @@ cask "keka"
 cask "typora"
 cask "zsa-wally"
   
-# Work
+# Work apps
 cask "encryptme"
 cask "slack"
 cask "zoomus"
 
-# Design and dev
+# Design and dev apps
 cask "contraste"
 cask "dash"
 cask "docker"
@@ -37,7 +37,7 @@ cask "sim-daltonism"
 cask "transmission"
 cask "visual-studio-code"
 
-# Audio/video
+# Audio/video apps
 cask "audio-hjiack"
 cask "handbrake"
 cask "kap"
@@ -46,7 +46,7 @@ cask "obs"
 cask "vlc"
 cask "youtube-dl"
 
-# Fun
+# Entertainment apps
 cask "discord"
 cask "kindle"
 cask "spotify"
