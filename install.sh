@@ -40,22 +40,6 @@ echo "🚮 Cleaning up any old brews or casks…"
 echo "=================================================="
 brew cleanup
 
-# Fonts
-echo -e "\\n\\n🔠 Installing a couple fonts…"
-echo "=================================================="
-brew tap homebrew/cask-fonts
-
-FONTS=(
-  font-black-han-sans
-  font-ibm-plex
-  font-inconsolata
-  font-inter
-  font-roboto
-  font-saucecodepro-nerd-font
-)
-
-brew cask install ${FONTS[@]}
-
 # NVM
 echo -e "\\n\\n💚 Installing NVM and setting Node version…"
 echo "=================================================="
