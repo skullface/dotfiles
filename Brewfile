@@ -8,6 +8,7 @@ tap "homebrew/cask-drivers"
 # CLI tools
 brew "gh"
 brew "imagemagick"
+brew "ffmpeg"
 brew "node"
 brew "rbenv"
 brew "svgo"
@@ -28,7 +29,7 @@ cask "encryptme"
 cask "slack"
 cask "zoomus"
 
-# Design and dev apps
+# Design/dev apps
 cask "contraste"
 cask "dash"
 cask "docker"
