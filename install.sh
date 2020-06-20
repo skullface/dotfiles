@@ -46,12 +46,12 @@ echo "=================================================="
 brew tap homebrew/cask-fonts
 
 FONTS=(
-  font-saucecodepro-nerd-font
-  font-inconsolata
-  font-roboto
-  font-inter
   font-black-han-sans
   font-ibm-plex
+  font-inconsolata
+  font-inter
+  font-roboto
+  font-saucecodepro-nerd-font
 )
 
 brew cask install ${FONTS[@]}
