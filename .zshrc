@@ -6,7 +6,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # source $HOME/.bash_profile
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="/Users/skullface/.oh-my-zsh"
+
+# Spaceship ZSH
+# ===========================================================================
 
 # Customize Spaceship ZSH with variables defined before the theme
 SPACESHIP_GIT_SYMBOL=" "
@@ -16,22 +19,21 @@ SPACESHIP_DIR_PREFIX=" "
 # Set name of the theme to load
 ZSH_THEME="spaceship"
 
-# disable auto-setting terminal title.
+# oh-my-zsh settings
+# ===========================================================================
+
+# Disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
-# display red dots whilst waiting for completion.
+# Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
+# Disable marking untracked files under VCS as dirty. This makes repository
+# status check for large repositories much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
-plugins=(tmux zsh-interactive-cd thefuck docker)
+plugins=(git tmux zsh-interactive-cd thefuck docker)
 
 # Sources
 # ===========================================================================
@@ -41,7 +43,11 @@ source $ZSH/oh-my-zsh.sh
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# RBENV
 eval "$(rbenv init -)"
 
 # NPM
@@ -66,9 +72,8 @@ fi
 # thefuck
 eval $(thefuck --alias)
 
-# Stash your environment variables in ~/.localrc. This means they'll stay out
-# of your main dotfiles repository (which may be public, like this one), but
-# you'll have access to them in your scripts.
+# Environment variables stashed in ~/.localrc. This means they'll stay out
+# of my public dotfiles repo but I still have access to them in my scripts.
 if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
@@ -76,7 +81,7 @@ fi
 
 # Find all my dotfiles~
 typeset -U config_files
-config_files=($HOME/Documents/Personal/dotfiles/aliases/*)
+config_files=($HOME/Personal/dotfiles/aliases/*)
 
 # And load ’em up
 for file in ${${config_files}}
@@ -84,7 +89,9 @@ do
   source $file
 done
 
-# Customize Spaceship ZSH with variables defined after the theme
+export EDITOR="/Applications/'Visual Studio Code.app'/Contents/MacOS/Electron"
+
+# Spaceship ZSH: Customize with variables defined after the theme
 # ===========================================================================
 
 # Directory
