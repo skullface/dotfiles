@@ -18,60 +18,78 @@ sudo -v
 # Keep alive: update existing `sudo` timestamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Install Xcode Command Line Utilities
-# Make sure you install/update Xcode from the App Store first!
-echo "😅 Installing the bane of our collective existence…"
-xcode-select --install
-
 # Install Homebrew
-echo "🍺 Installing Homebrew…"
+echo "==> 🍺 Installing Homebrew…"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew update
 
 # Install requirements
 PACKAGES=(
   wget
+  node
+  rbenv
+  gh
+  youtube-dl
   imagemagick
   svgo
-  node
-  gh
-  rbenv
+  thefuck
 )
 
-echo "📦 Installing command line packages… owo"
+echo "==> 📦 Installing command line packages… owo"
 brew install ${PACKAGES[@]}
 
-echo "😎 And now, some programs~"
+echo "==> 😎 And now, some programs~"
 brew tap homebrew/cask
 
 PROGRAMS_REQ=(
   google-chrome
   firefox
   1password
+  keka
+  typora
+)
+
+PROGRAMS_WORK=(
   slack
   zoomus
   encryptme
-  loom
 )
 
 PROGRAMS_DEV=(
   figma
+  contraste
+  sim-daltonism
   visual-studio-code
+  github-desktop
   dash
   docker
+)
+
+PROGRAMS_AV=(
+  audio-hjiack
+  vlc
+  obs
+  loom
+  handbrake
+  kap
 )
 
 PROGRAMS_FUN=(
   discord
   spotify
   kindle
-  vlc
 )
 
 echo "  Installing required apps…"
 brew cask install ${PROGRAMS_REQ[@]}
 
+echo "  Installing apps for work…"
+brew cask install ${PROGRAMS_DEV[@]}
+
 echo "  Installing design and development apps…"
+brew cask install ${PROGRAMS_DEV[@]}
+
+echo "  Installing audio/video apps…"
 brew cask install ${PROGRAMS_DEV[@]}
 
 echo "  Installing fun apps…"
@@ -104,8 +122,13 @@ FONTS=(
 
 brew cask install ${FONTS[@]}
 
+# Ruby
+echo "==> 💎 Initializing Ruby…"
+rbenv init
+gem install bundler
+
 # Customize Terminal: ohmyzsh
-echo "🚀 Customizing Terminal…"
+echo "==> 🚀 Customizing Terminal…"
 echo "  Installing ohmyzsh and the Spaceship theme…"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
@@ -116,7 +139,7 @@ echo "  Removing that “last login” annoying message"
 touch ~/.hushlogin
 
 # OSX
-echo "🍎 Configuring OSX…"
+echo "==> 🍎 Configuring OSX…"
 
 # Trackpad: Enable tap-to-click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -169,5 +192,6 @@ echo "  Dock settings set"
 echo "  Restarting Finder and Dock…"
 sudo killall Finder && killall Dock
 
-echo "✨💗💎🌈🌟💫🌱🍓 OMG DONE"
-echo "👩🏻‍💻 Happy hacking~!"
+echo "==> 👩🏻‍💻 Complete!"
+echo "✨💋🌈🍰🌻🌟💫🌱🐱🍿🍓"
+echo "HAPPY HACKING OWO"
