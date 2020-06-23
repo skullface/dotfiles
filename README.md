@@ -13,3 +13,7 @@ This dotfiles were written for my personal setup and workflows. You’re welcome
   $ zsh install.sh
   ```
 6. Enjoy! ♥️
+
+### Touchbar
+Brewfile installs [MTMR](https://github.com/Toxblh/MTMR) to customize the touchbar.
+![](https://user-images.githubusercontent.com/221550/85439616-312e7100-b55b-11ea-9ba9-8540ff296069.png)

@@ -1,4 +1,5 @@
 # Define the motivations
+# quotes.sh https://github.com/Toxblh/MTMR-presets/tree/master/metasean by @metasean
 m[0]="hi qt! you’re doing great! 🌻"
 m[1]="given your eyes a rest lately? 🐰"
 m[2]="take another sip of water! 🐳"
