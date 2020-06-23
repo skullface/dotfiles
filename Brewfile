@@ -22,7 +22,7 @@ cask "firefox"
 cask "google-chrome"
 cask "keka"
 cask "typora"
-cask "zsa-wally"
+cask "mtmr"
   
 # Work apps
 cask "encryptme"

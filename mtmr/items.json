@@ -1,0 +1,120 @@
+[
+  // Play/Pause
+  {
+    "type": "play",
+    "bordered": false,
+    "align": "left",
+    "width": 38
+  },
+  
+  // Random quote
+  {
+		"type": "shellScriptTitledButton",
+    "bordered": false,
+    "align": "left",
+		"source": {
+			"filePath": "~/Library/Application Support/MTMR/motivator.sh"
+    },
+    "refreshInterval": 500 // in seconds
+  },
+  
+  // Spotify
+  {
+    "type": "appleScriptTitledButton",
+    "source": {
+      "inline": "if application \"Spotify\" is running then\rtell application \"Spotify\"\rif player state is playing then\rreturn (get artist of current track) & \" – \" & (get name of current track)\relse\rreturn \"\"\rend if\rend tell\rend if\rreturn \"\"\r"
+    },
+    "action": "appleScript",
+    "actionAppleScript": {
+      "inline": "if application \"Spotify\" is running then\rtell application \"Spotify\"\rif player state is playing then\rnext track\rend if\rend tell\rend if\r"
+    },
+    "refreshInterval": 1 // in seconds
+  },
+
+  // Weather
+  {
+    "type": "weather",
+    "units": "imperial",
+    "refreshInterval": 600, // in seconds
+    "icon_type": "text",
+    "api_key": "7e1e9400cdf8b687ba25d12e1df1956e",
+    "bordered": false,
+    "align": "right"
+  },
+  
+  // spacer
+  {
+    "type": "titledButton",
+    "title": "",
+    "width": 12,
+    "bordered": false,
+    "align": "right" 
+  },
+  
+  // Mute
+  {
+    "type": "mute",
+    "bordered": false,
+    "align": "right",
+    "width": 22
+  },
+  
+  // Volume down
+  {
+    "type": "volumeDown",
+    "bordered": false,
+    "align": "right",
+    "width": 22
+  },
+  
+  // Volume up
+  {
+    "type": "volumeUp",
+    "bordered": false,
+    "align": "right",
+    "width": 22
+  },
+  
+  // Do Not Disturb (notifications)
+  {
+    "type": "dnd",
+    "width": 22,
+    "align": "right" 
+  },
+  
+  // spacer
+  {
+    "type": "titledButton",
+    "title": "",
+    "width": 12,
+    "align": "right",
+    "bordered": false
+  },
+  
+  // Put display to sleep
+  { 
+    "type": "displaySleep", 
+    "image": {
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAC1lBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8T8e+VAAAA8nRSTlMAAjp4kqiqn4x2RA2B6P/8y20RT+n3lxb98HO+PvvgJ87jIVndFbawDGY07xBNf1pDWyiuAeX2Bi0pnn4S24Uri4eV+mkmitpKGFUdVNVWj8D1/pydUjXqu14IZdQudLd5d2hOL+GWJDLS7u3IPAMF+ZEKR8/khBwf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"
+    },
+    "bordered": false,
+    "width": 16,
+    "align": "right"
+  },
+  
+  // Brightness down
+  { 
+    "type": "brightnessDown", 
+    "width": 24, 
+    "bordered": false, 
+    "align": "right" 
+  },
+  
+  // Brightness up
+  { 
+    "type": "brightnessUp", 
+    "width": 24, 
+    "bordered": false, 
+    "align": "right" 
+  }
+]
