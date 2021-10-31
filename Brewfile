@@ -26,7 +26,7 @@ cask "typora"
   
 # Work apps
 cask "slack"
-cask "zoomus"
+cask "zoom"
 
 # Design/dev apps
 cask "figma"
