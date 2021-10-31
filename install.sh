@@ -43,7 +43,7 @@ brew cleanup
 # NVM
 echo -e "\\n\\n💚 Installing NVM and setting Node version…"
 echo "=================================================="
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+cask nvm
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -52,7 +52,7 @@ nvm install 12.18.1
 nvm alias default 12.18.1
 
 # Customize Terminal: ohmyzsh
-echo -e "\\n\\n💻 Customizing Terminal with ohmyzsh…"
+echo -e "\\n\\n💻 Customizing command line with ohmyzsh…"
 echo "=================================================="
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -66,7 +66,7 @@ ln -s ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-z
 
 echo "✅ Symlink set"
 
-# Customize Terminal: remove
+# Customize Terminal: remove msg
 echo -e "\\n\\n⏰ Removing that “last login” message…"
 echo "=================================================="
 touch ~/.hushlogin
@@ -136,7 +136,7 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 echo "✅ Safari settings customized"
 
 # Dock: enable auto-hide
-# defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide -bool true
 
 # Dock: move to left side of screen to maximize available vertical space
 defaults write com.apple.dock orientation -string left
@@ -162,4 +162,4 @@ sudo killall Finder && killall Dock
 echo -e "\\n\\n👩🏻‍💻 Setup complete!"
 echo "=================================================="
 echo "✨💋🌈🍰🌻🌟💫🌱🐱🍿🍓"
-echo "HAPPY HACKING OWO"
+echo "go get ‘em, tiger"
