@@ -40,6 +40,7 @@ cask "sim-daltonism"
 
 # Audio/video apps
 cask "audio-hjiack"
+cask "loopback"
 cask "handbrake"
 cask "cleanshot"
 cask "kap"
