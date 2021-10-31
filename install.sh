@@ -51,6 +51,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install 16.13.0
 nvm alias default 16.13.0
 
+# Customize Terminal: download and install custom font
+curl https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf -o ./SauceCodeProNerdFontCompleteMono.ttf
+mv ./SauceCodeProNerdFontCompleteMono.ttf ~/Library/Fonts/SauceCodeProNerdFontCompleteMono.ttf 
+fc-cache -f -v
+
 # Customize Terminal: ohmyzsh
 echo -e "\\n\\n💻 Customizing command line with ohmyzsh…"
 echo "=================================================="
