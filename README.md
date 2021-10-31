@@ -1,19 +1,20 @@
-This dotfiles were written for my personal setup and workflows. You’re welcome to use them however works best for you, but please don’t expect them to work perfectly on your machine~!
+These dotfiles were written for my own setup and workflows for personal and professional computing. You’re welcome to use them however works best for you, but I won’t accept issues/PRs for customizations.
 
-### new computer? owo let’s fucking go
+### New machine setup
 1. Clone this repo
-  ```shell
-  $ mkdir Personal; cd Personal; git clone git@github.com:skullface/dotfiles.git && cd dotfiles 
+2. Run the custom install script:
+  ```bash
+  $ ./install.sh
   ```
-2. Download Xcode from the Mac App Store
-3. Download [latest Python](https://www.python.org/downloads) and open it to install
-4. Set Terminal profile: Open Preferences <kbd>⌘,</kbd> → Select **Profile** tab → Import `Cassette.terminal`
-5. Run the custom `install.sh` script~
-  ```shell
-  $ zsh install.sh
-  ```
-6. Enjoy! ♥️
+3. Enjoy! ♥️
 
-### Touchbar
-Brewfile installs [MTMR](https://github.com/Toxblh/MTMR) to customize the touchbar.
+---
+
+#### Optional touchbar customization
+Install [MTMR](https://github.com/Toxblh/MTMR) (`brew install --cask mtmr`) to customize the touchbar with the following settings:
 ![](https://user-images.githubusercontent.com/221550/85439616-312e7100-b55b-11ea-9ba9-8540ff296069.png)
+
+#### Other dependencies
+
+- Download [latest Python](https://www.python.org/downloads) and open it to install
+- Mac App Store programs: Deliveries, Webcam Settings
