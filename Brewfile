@@ -13,6 +13,7 @@ brew "node"
 brew "rbenv"
 brew "svgo"
 brew "wget"
+brew "tmux"
 brew "youtube-dl"
 
 # Required apps
