@@ -6,7 +6,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # source $HOME/.bash_profile
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/skullface/.oh-my-zsh"
+export ZSH="/Users/skull/.oh-my-zsh"
 
 # Spaceship ZSH
 # ===========================================================================
@@ -33,7 +33,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Which plugins would you like to load?
-plugins=(git tmux zsh-interactive-cd thefuck docker)
+plugins=(git tmux zsh-interactive-cd)
 
 # Sources
 # ===========================================================================
