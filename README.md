@@ -3,12 +3,10 @@ These dotfiles were written for my own setup and workflows for personal and prof
 
 ## How to use
 
-1. Clone this repo
-2. Run the custom install script:
-  ```bash
-  $ ./install.sh
-  ```
-3. Enjoy! ♥️
+1. Clone this repo and navigate to it
+2. Run the custom install script: `$ ./install.sh`
+3. Replace local `.zshrc` with this repo’s `.zshrc`
+4. Enjoy! ♥️
 
 ## Details
 
@@ -22,7 +20,7 @@ Included in the install script
 
 ### Optional touchbar customization
 
-Install [MTMR](https://github.com/Toxblh/MTMR) (`brew install --cask mtmr`) to customize the touchbar with the following settings:
+Install [MTMR](https://github.com/Toxblh/MTMR) (`$ brew install --cask mtmr`) to customize the touchbar with the following settings inside the `/mtmr` directory:
 <table><tr><td><img src="https://user-images.githubusercontent.com/221550/85439616-312e7100-b55b-11ea-9ba9-8540ff296069.png" alt=""></td></tr></table>
 
 ### More dependencies to make life happier
@@ -32,9 +30,9 @@ Install [MTMR](https://github.com/Toxblh/MTMR) (`brew install --cask mtmr`) to c
 
 #### Terminal profiles
 
-- Terminal: `Casette.terminal`
-- iTerm2: Coming soon with [Hardcore](https://github.com/hardcore/iTerm-colors/blob/master/hardcore.itermcolors) color scheme
+- Terminal: `terminal/Cassette.terminal`
+- iTerm2: `terminal/Cassette.json` with [Hardcore](https://github.com/hardcore/iTerm-colors/blob/master/hardcore.itermcolors) color scheme
 
 #### VS Code settings
 
-I use Settings Sync to take care of this, but a backup is in this repo as well 🤞
+I use Settings Sync to take care of this, but a backup lives in `vscode/settings.json` 🤞
