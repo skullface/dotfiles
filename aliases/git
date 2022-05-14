@@ -29,9 +29,9 @@ alias hist="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias histSHA="git --no-pager log --oneline"
 
 # Tell your local changes to fuck off by resetting to the remote
-# Use: `gitfucked <BRANCH>`
 function gitfucked {
-  git fetch origin && git reset --hard origin/$1
+  branch=$(git symbolic-ref --short HEAD)
+  git fetch origin && git reset --hard origin/$branch
 }
 
 # Interactive rebase helper
