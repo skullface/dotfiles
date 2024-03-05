@@ -6,18 +6,28 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # source $HOME/.bash_profile
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/skull/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
+
+# Homebrew
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Spaceship ZSH
 # ===========================================================================
 
 # Customize Spaceship ZSH with variables defined before the theme
 SPACESHIP_GIT_SYMBOL=" "
-SPACESHIP_GIT_PREFIX=" "
 SPACESHIP_DIR_PREFIX=" "
 
 # Set name of the theme to load
 ZSH_THEME="spaceship"
+
+# Make Spaceship play nicely with Warp
+if [[ $TERM_PROGRAM == "WarpTerminal" ]]; then
+  SPACESHIP_PROMPT_ASYNC=FALSE
+  SPACESHIP_PROMPT_SEPARATE_LINE=true
+  SPACESHIP_CHAR_SYMBOL=" "
+fi
 
 # oh-my-zsh settings
 # ===========================================================================
@@ -45,17 +55,14 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# RBENV
-eval "$(rbenv init -)"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # NPM
 export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH=$PATH:$(npm prefix -g)/bin
 
 # Golang
-export GOPATH=$HOME/gospace # don't forget to change your path correctly!
+export GOPATH=$HOME/gospace
 export GOROOT=/usr/local/opt/go/libexec
 export GOBIN=$HOME/gospace/bin
 export PATH=$PATH:$GOPATH/bin
@@ -67,16 +74,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
-fi
-
-# thefuck
-eval $(thefuck --alias)
-
-# Environment variables stashed in ~/.localrc. This means they'll stay out
-# of my public dotfiles repo but I still have access to them in my scripts.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
 fi
 
 # Find all my dotfiles~
