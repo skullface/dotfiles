@@ -91,6 +91,7 @@ export EDITOR="/Applications/'Visual Studio Code.app'/Contents/MacOS/Electron"
 # Spaceship ZSH: Customize with variables defined after the theme
 # ===========================================================================
 
+
 # Directory
 SPACESHIP_DIR_COLOR="magenta"
 
@@ -101,10 +102,11 @@ SPACESHIP_TIME_COLOR="black"
 # Git
 SPACESHIP_GIT_STATUS_DELETED="✖"
 SPACESHIP_GIT_STATUS_UNTRACKED="·"
-SPACESGIP_GIT_STATUS_MODIFIED="⏃"
+SPACESGIP_GIT_STATUS_MODIFIED="✦"
 SPACESHIP_GIT_STATUS_AHEAD="↓"
 SPACESHIP_GIT_STATUS_BEHIND="↑"
-SPACESHIP_GIT_BRANCH_COLOR="blue"
+SPACESHIP_GIT_STATUS_COLOR="magenta"
+SPACESHIP_GIT_BRANCH_COLOR="cyan"
 
 # Ruby
 SPACESHIP_RUBY_SYMBOL=" "
@@ -115,6 +117,12 @@ SPACESHIP_BATTERY_PREFIX=" "
 SPACESHIP_BATTERY_SYMBOL_FULL=" "
 SPACESHIP_BATTERY_SYMBOL_CHARGING="⚡"
 SPACESHIP_BATTERY_SYMBOL_DISCHARGING="⚡"
+
+# Execution time
+SPACESHIP_EXEC_TIME_SHOW="true"
+SPACESHIP_EXEC_TIME_COLOR="magenta"
+SPACESHIP_EXEC_TIME_PRECISION=3
+SPACESHIP_EXEC_TIME_ELAPSED=.01
 
 # Command prompt
 SPACESHIP_CHAR_SYMBOL=" "
@@ -128,8 +136,8 @@ SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
   host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
+  git           # Git section (git_branch • git_status)
+  hg            # Mercurial section (hg_branch  • hg_status)
   package       # Package version
   node          # Node.js section
   ruby          # Ruby section
@@ -145,16 +153,14 @@ SPACESHIP_PROMPT_ORDER=(
   aws           # Amazon Web Services section
   venv          # virtualenv section
   conda         # conda virtualenv section
-  pyenv         # Pyenv section
+  python        # Pyenv section
   dotnet        # .NET section
-  ember         # Ember.js section
   kubectl       # Kubectl context section
   terraform     # Terraform workspace section
   exec_time     # Execution time
   time          # Time stamps section
   battery       # Battery level and status
   line_sep      # Line break
-  vi_mode       # Vi-mode indicator
   jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
