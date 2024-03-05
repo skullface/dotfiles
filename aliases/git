@@ -2,36 +2,56 @@
 #  Git
 #  ———————————————————————————————————————————————————————————————————————————
 
-# Initialize Git
-alias gin="git init"
-
-# Switch to source of truth branch & make sure it’s up to date with the remote
-alias m="git checkout master && git pull origin master"
+# Switch to source-of-truth branch and make sure it’s up to date with the remote
+alias m="git checkout main && git pull origin main"
 alias ghp="git checkout gh-pages && git pull origin gh-pages"
 
-# 🧂-N-Pepa
+# Commit/push/pull helpers
 alias pull="git pull"
 alias push="git push"
 alias pushf="git push --force"
+alias cmt="git commit -m"
+alias amd="git commit --amend -m"
 
-# Commit helpers
-alias commit="git commit -m"
-alias amend="git commit --amend -m"
-
-# Set remote URL
-alias remote="git remote add origin"
-alias remoteChange="git remote set-url origin"
-
-# Status and history helpers
-alias status="git status"
+# View details of the last commit
 alias last="git log -1 HEAD"
-alias hist="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
-alias histSHA="git --no-pager log --oneline"
 
 # Tell your local changes to fuck off by resetting to the remote
+# Use: `gitfucked`
 function gitfucked {
   branch=$(git symbolic-ref --short HEAD)
   git fetch origin && git reset --hard origin/$branch
+}
+
+# Interactive history helper
+function hist() {
+  prompt() {
+    echo -e "\033[32m\n→\033[37m $1 \033[0m"
+  }
+  
+  prompt "What’s the file path? Leave blank for branch history."
+  read path_to_file
+  
+  prompt "How many commits would you like to display? (Default: 10)"
+  read number_of_commits
+  number_of_commits=${number_of_commits:-10}
+  
+  prompt "Would you like to pretty-print a graph? (y/n)"
+  read print_graph
+
+  git_command="git log -n $number_of_commits"
+
+  if [[ $print_graph == [Yy] ]]; then
+    git_command+=" --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+  else
+    git_command+=" --oneline"
+  fi
+
+  if [[ $file_path ]]; then
+    git_command+=" -- \"$path_to_file\""
+  fi
+
+  eval "$git_command"
 }
 
 # Interactive rebase helper
@@ -40,10 +60,7 @@ function rebase {
   git rebase -i HEAD~${1:?"Specify the number of commits to go back in time."}
 }
 
-# Rebase master
-alias rebaseM="git fetch && git rebase origin/master"
-
-# Rebase to time travel 🗓
+# Rebase to time travel
 alias redate="git rebase --committer-date-is-author-date"
 
 # Stash helpers
@@ -52,9 +69,11 @@ alias stash+="git stash pop"
 alias stash-="git stash drop"
 
 # Branch helpers
-# Use: `command <BRANCH>`
+# Use: `command <BRANCH_NAME>`
 alias new="git checkout -b"
 alias switch="git checkout"
 alias rename="git branch -m"
 alias delete="git branch -d"
 alias Delete="git branch -D"
+alias deleteBranches="git for-each-ref --format '%(refname:short)' refs/heads | grep -v 'main' | xargs git branch -D"
+alias branches="git branch -a"
