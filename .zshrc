@@ -17,7 +17,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Customize Spaceship ZSH with variables defined before the theme
 SPACESHIP_GIT_SYMBOL=" "
-SPACESHIP_DIR_PREFIX=" "
+SPACESHIP_DIR_TRUNC_PREFIX="  "
 
 # Set name of the theme to load
 ZSH_THEME="spaceship"
