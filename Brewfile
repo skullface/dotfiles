@@ -7,6 +7,7 @@ brew "gh"
 brew "imagemagick"
 brew "ffmpeg"
 brew "node"
+brew "wget"
 brew "svgo"
 brew "youtube-dl"
 
