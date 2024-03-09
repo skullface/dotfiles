@@ -71,6 +71,12 @@ ln -s ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme ~/.oh-my-z
 
 echo "✅ Symlink set"
 
+echo -e "\\n\\n🚀 Installing Warp theme…"
+echo "=================================================="
+mkdir ~/.warp ; cd ~/.warp
+git clone https://github.com/warpdotdev/themes.git
+cp ~/Projects/dotfiles/warp/yonce.yaml ~/.warp/themes/standard 
+
 # Customize Terminal: remove msg
 echo -e "\\n\\n⏰ Removing that “last login” message…"
 echo "=================================================="
