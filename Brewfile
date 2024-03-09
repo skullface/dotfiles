@@ -18,7 +18,7 @@ cask "google-chrome"
 cask "firefox"
 cask "fantastical"
 cask "bartender"
-cask "reatangle-pro"
+cask "rectangle-pro"
 cask "telegram"
 cask "warp"
 
