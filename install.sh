@@ -12,7 +12,7 @@ echo -e "             📦 LET’S BOOTSTRAP! 🚀\\n"
 # Close any open System Preferences panes
 osascript -e 'tell application "System Preferences" to quit'
 
-echo -e "\\n\\n🔐 Enter password (don’t worry, no sudo allowed)"
+echo -e "\\n\\n🔐 Enter password"
 echo "=================================================="
 # Ask for the administrator password upfront
 sudo -v
@@ -129,20 +129,6 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 echo "✅ Finder settings customized"
 
-# Enable Safari’s debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
-# Make Safari’s search banners default to "Contains" instead of "Starts With"
-# defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-
-# Remove useless icons from Safari’s bookmarks bar
-# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-
-echo "✅ Safari settings customized"
-
-# Dock: enable auto-hide
-defaults write com.apple.dock autohide -bool true
-
 # Dock: move to left side of screen to maximize available vertical space
 defaults write com.apple.dock orientation -string left
 
@@ -164,7 +150,8 @@ echo "🔄 Now restarting Finder and Dock…"
 sudo killall Finder && killall Dock
 
 
-echo -e "\\n\\n👩🏻‍💻 Setup complete!"
+echo -e "\\n\\n👩‍💻 Setup complete!"
 echo "=================================================="
 echo "✨💋🌈🍰🌻🌟💫🌱🐱🍿🍓"
 echo "go get ‘em, tiger"
+echo -e "\\n\\n"
