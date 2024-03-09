@@ -2,9 +2,6 @@
 #  Tell Homebrew what to do when we run `brew bundle`
 #  ———————————————————————————————————————————————————————————————————————————
 
-tap "homebrew/cask"
-tap "homebrew/cask-drivers"
-
 # CLI tools
 brew "gh"
 brew "imagemagick"
@@ -34,7 +31,6 @@ cask "zoom"
 cask "figma"
 cask "visual-studio-code"
 cask "iterm2"
-cask "imagalpha"
 cask "imageoptim"
 cask "contraste"
 cask "sim-daltonism"
