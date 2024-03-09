@@ -53,9 +53,8 @@ nvm install 20.11.1
 nvm alias default 20.11.1
 
 # Customize Terminal: download and install custom font
-curl https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf -o ./SauceCodeProNerdFontCompleteMono.ttf
-mv ./SauceCodeProNerdFontCompleteMono.ttf ~/Library/Fonts/SauceCodeProNerdFontCompleteMono.ttf 
-fc-cache -f -v
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CommitMono.zip
+mv CommitMono.zip ~/Downloads/CommitMono.zip 
 
 # Customize Terminal: ohmyzsh
 echo -e "\\n\\n💻 Customizing command line with ohmyzsh…"
