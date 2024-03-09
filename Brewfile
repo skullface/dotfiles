@@ -10,26 +10,29 @@ brew "node"
 brew "svgo"
 brew "youtube-dl"
 
-# Required apps
+# Necessities 
 cask "1password"
-cask "firefox"
+cask "arc"
 cask "google-chrome"
+cask "firefox"
 cask "fantastical"
 cask "bartender"
-cask "typora"
-  
-# Work apps
+cask "reatangle-pro"
+cask "telegram"
+cask "warp"
+
+# Work
 cask "slack"
 cask "zoom"
 
-# Design/dev apps
+# Design/dev
 cask "figma"
 cask "visual-studio-code"
 cask "imageoptim"
 cask "contraste"
 cask "sim-daltonism"
 
-# Audio/video apps
+# Audio/video
 cask "audio-hjiack"
 cask "loopback"
 cask "handbrake"
@@ -37,7 +40,7 @@ cask "cleanshot"
 cask "obs"
 cask "vlc"
 
-# Entertainment apps
+# Entertainment
 cask "discord"
 cask "kindle"
 cask "spotify"
