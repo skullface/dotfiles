@@ -21,12 +21,7 @@ cask "bartender"
 cask "rectangle-pro"
 cask "telegram"
 cask "warp"
-
-# Work
-cask "slack"
-cask "zoom"
-
-# Design/dev
+cask "obsidian"
 cask "figma"
 cask "visual-studio-code"
 cask "imageoptim"
@@ -40,6 +35,10 @@ cask "handbrake"
 cask "cleanshot"
 cask "obs"
 cask "vlc"
+
+# Work comms
+cask "slack"
+cask "zoom"
 
 # Entertainment
 cask "discord"
