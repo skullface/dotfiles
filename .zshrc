@@ -18,31 +18,22 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Customize Spaceship ZSH with variables defined before the theme
 SPACESHIP_GIT_SYMBOL=" "
 SPACESHIP_DIR_TRUNC_PREFIX="  "
+SPACESHIP_PROMPT_ASYNC=FALSE
+SPACESHIP_PROMPT_SEPARATE_LINE=true
+SPACESHIP_CHAR_SYMBOL=" "
 
 # Set name of the theme to load
 ZSH_THEME="spaceship"
 
-# Make Spaceship play nicely with Warp
-if [[ $TERM_PROGRAM == "WarpTerminal" ]]; then
-  SPACESHIP_PROMPT_ASYNC=FALSE
-  SPACESHIP_PROMPT_SEPARATE_LINE=true
-  SPACESHIP_CHAR_SYMBOL=" "
-fi
-
 # oh-my-zsh settings
 # ===========================================================================
 
-# Disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
-
-# Display red dots whilst waiting for completion.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 COMPLETION_WAITING_DOTS="true"
 
-# Disable marking untracked files under VCS as dirty. This makes repository
-# status check for large repositories much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+HIST_STAMPS="yyyy.mm.dd"
 
-# Which plugins would you like to load?
 plugins=(git tmux zsh-interactive-cd)
 
 # Sources
@@ -171,3 +162,6 @@ SPACESHIP_PROMPT_ORDER=(
   exit_code     # Exit code section
   char          # Prompt character
 )
+
+# Use VS Code as editor of choice
+export EDITOR="code --wait"
