@@ -89,6 +89,16 @@ export EDITOR="/Applications/'Visual Studio Code.app'/Contents/MacOS/Electron"
 # Spaceship ZSH: Customize with variables defined after the theme
 # ===========================================================================
 
+echo "                                                       "
+echo "    ‘7MMF’   ‘7MF’      (˶• ◡ •˶ )づ .*.ﾟ ▲      ‘7MM   "
+echo "      ‘MA     ,V                                  MM   "
+echo "       VM:   ,V .gP*Ya ‘7Mb,od8 ,p6*bo   .gP*Ya   MM   "
+echo "        MM.  M’,M’   Yb  MM’ *’6M’  OO  ,M’   Yb  MM   "
+echo "        ‘MM A’ 8M******  MM    8M       8M******  MM   "
+echo "         :MM;  YM.    ,  MM    YM.    , YM.    ,  MM   "
+echo "          VF    ‘Mbmmd’.JMML.   YMbmd’   ‘Mbmmd’.JMML. "
+echo "                                                       "
+
 # Directory
 SPACESHIP_DIR_COLOR="magenta"
 
