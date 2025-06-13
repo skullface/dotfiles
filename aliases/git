@@ -60,6 +60,23 @@ function rebase {
   git rebase -i HEAD~${1:?"Specify the number of commits to go back in time."}
 }
 
+# Rebase to latest main
+function remain() {
+  local current_branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD) || { echo "⛔ you’re not in a git repo???"; return 1; }
+
+  echo "🐶 fetching origin"
+  git fetch origin || { echo "⛔ fetch failed… woof 💀";return 1; }
+  
+  echo "💿 rebasing"
+  git rebase origin/main || { echo "⛔ resolve conflicts first 😵‍💫"; return 1; }
+
+  echo "⬆️ pushing"
+  git push origin "$current_branch" --force-with-lease || { echo "⛔ check the remote branch status? 🤔"; return 1; }
+
+  echo "✅ rebased successfully on '$current_branch'"
+}
+
 # Rebase to time travel
 alias redate="git rebase --committer-date-is-author-date"
 
