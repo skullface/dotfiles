@@ -74,7 +74,7 @@ function remain() {
   echo "⬆️ pushing"
   git push origin "$current_branch" --force-with-lease || { echo "⛔ check the remote branch status? 🤔"; return 1; }
 
-  echo "✅ rebased successfully on '$current_branch'"
+  echo "✅ rebased successfully `$current_branch`"
 }
 
 # Rebase to time travel
