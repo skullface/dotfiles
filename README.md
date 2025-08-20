@@ -1,38 +1,29 @@
 These dotfiles were written for my own setup and workflows for personal and professional computing. You’re welcome to use them however works best for you, but I won’t accept issues/PRs for customizations.
 
-
 ## How to use
 
 1. Clone this repo and navigate to it
 2. Run the custom install script: `$ ./install.sh`
 3. Replace local `.zshrc` with this repo’s `.zshrc`
-4. Enjoy! ♥️
+4. Enjoy! 💕
 
 ## Details
 
-Included in the install script
+Included in the install script:
 
-- Oh My Zsh + Spaceship prompt
+- Oh My Zsh + [Spaceship prompt](https://github.com/spaceship-prompt/spaceship-prompt)
 - MacOS customizations
-- Helpful [CLI tools and programs](https://github.com/skullface/dotfiles/blob/main/Brewfile#L7)
-- [Sauce Code Pro Regular](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SourceCodePro), a modified version of Source Code Pro, patched by [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
+- Helpful CLI tools and programs
+- “CommitMonoSkull Nerd Font”, a customized version of [Commit Mono](https://commitmono.com) ([test drive](https://www.programmingfonts.org/#commit-mono)) patched via [NerdFonts](https://github.com/ryanoasis/nerd-fonts)
 - [Aliases](https://github.com/skullface/dotfiles/tree/main/aliases) for my most-used (or most-forgotten) commands and functions
 
-### Optional touchbar customization
+#### Terminal profiles/themes
 
-Install [MTMR](https://github.com/Toxblh/MTMR) (`$ brew install --cask mtmr`) to customize the touchbar with the following settings inside the `/mtmr` directory:
-<table><tr><td><img src="https://user-images.githubusercontent.com/221550/85439616-312e7100-b55b-11ea-9ba9-8540ff296069.png" alt=""></td></tr></table>
+- Ghostty: `terminal/ghostty` 🌟
+- Warp: `terminal/warp` 🪦
+- iTerm2: `terminal/Cassette.json` with [Hardcore](https://github.com/hardcore/iTerm-colors/blob/master/hardcore.itermcolors) color scheme 🪦
+- Terminal: `terminal/Cassette.terminal` 🪦
 
-### More dependencies to make life happier
-
-- Download [latest Python](https://www.python.org/downloads) and open it to install
-- Mac App Store programs: Deliveries, Webcam Settings
-
-#### Terminal profiles
-
-- Terminal: `terminal/Cassette.terminal`
-- iTerm2: `terminal/Cassette.json` with [Hardcore](https://github.com/hardcore/iTerm-colors/blob/master/hardcore.itermcolors) color scheme
-
-#### VS Code settings
+#### Cursor/VS Code settings
 
 I use Settings Sync to take care of this, but a backup lives in `vscode/settings.json` 🤞
