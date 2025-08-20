@@ -4,7 +4,6 @@
   "editor.renderControlCharacters": false,
   "git.confirmSync": false,
   "todo-tree.tree.showScanModeButton": false,
-  "editor.fontFamily": "'SauceCodePro Nerd Font Mono', 'SF Mono', 'Source Code Pro', Inconsolata, Menlo, 'Courier New', monospace",
   "gitTreeCompare.diffMode": "full",
   "atomKeymap.promptV3Features": true,
   "editor.multiCursorModifier": "ctrlCmd",
@@ -14,7 +13,7 @@
   "editor.detectIndentation": false,
   "editor.wordWrap": "on",
   "editor.hover.enabled": false,
-  "emmet.triggerExpansionOnTab": false,
+  "emmet.triggerExpansionOnTab": true,
   "files.exclude": {
     "**/*.build": true,
     "**/*.git": true,
@@ -32,20 +31,123 @@
   "window.nativeTabs": true,
   "diffEditor.wordWrap": "on",
   "git.autofetch": true,
-  "workbench.editor.untitled.hint": "hidden",
   "security.workspace.trust.untrustedFiles": "open",
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
     "*": true,
-    "yaml": false,
-    "plaintext": true,
-    "markdown": true
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "true": false,
+    "typescriptreact": true,
+    "css": true,
+    "javascript": true
   },
-  "html.autoClosingTags": false,
+  "html.autoClosingTags": true,
   "html.format.endWithNewline": true,
-  "workbench.colorTheme": "GitHub Dark",
   "editor.fontLigatures": true,
+  "html.format.indentHandlebars": true,
+  "eslint.validate": ["javascript"],
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.codeActionsOnSave.mode": "problems",
+  "redhat.telemetry.enabled": false,
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "vscode-neovim.highlightGroups.highlights": {
+    "Directory": "vim",
+    "IncSearch": {
+      "backgroundColor": "theme.editor.findMatchBackground",
+      "borderColor": "theme.editor.findMatchBorder"
+    },
+    "Search": {
+      "backgroundColor": "theme.editor.findMatchHighlightBackground",
+      "borderColor": "theme.editor.findMatchHighlightBorder"
+    },
+    "Visual": {
+      "backgroundColor": "theme.editor.selectionBackground"
+    },
+    "Conceal": "vim",
+    "Substitute": "vim"
+  },
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "window.autoDetectHighContrast": false,
+  "window.clickThroughInactive": false,
+  "emmet.useInlineCompletions": true,
+  "tailwindCSS.emmetCompletions": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "svelte.enable-ts-plugin": true,
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "workbench.editor.empty.hint": "hidden",
+  "github.copilot.advanced": {},
+  "github.copilot-labs.showTestGenerationLenses": true,
+  "github.copilot-labs.showBrushesLenses": true,
+  "github.copilot.chat.welcomeMessage": "never",
+  "github.copilot.chat.localeOverride": "en",
+  "vscode-neovim.neovimExecutablePaths.linux": "",
+  "vscode-neovim.neovimExecutablePaths.win32": "",
+  "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
+  "github.copilot.editor.enableAutoCompletions": true,
   "workbench.sideBar.location": "right",
-  "workbench.productIconTheme": "fluent-icons",
-  "html.format.indentHandlebars": true
+  "files.associations": {
+    ".env*": "dotenv",
+    "CODEOWNERS": "ignore",
+    "tsconfig.*.json": "jsonc"
+  },
+  "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
+    "textMateRules": []
+  },
+  "cursor.cpp.disabledLanguages": ["plaintext", "scminput", "true"],
+  "workbench.colorTheme": "GitHub Dark Default",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "dotenv.enableAutocloaking": false,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "editor.formatOnSave": true,
+  "workbench.editor.enablePreview": false,
+  "editor.fontFamily": "'CommitMonoSkull Nerd Font', 'CommitMonoSkull', 'Geist Mono', 'Courier New', monospace",
+  "editor.lineHeight": 1.55,
+  "editor.fontSize": 12
 }
