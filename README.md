@@ -11,11 +11,11 @@ These dotfiles were written for my own setup and workflows for personal and prof
 
 Included in the install script:
 
-- Oh My Zsh + [Spaceship prompt](https://github.com/spaceship-prompt/spaceship-prompt)
-- MacOS customizations
-- Helpful CLI tools and programs
-- “CommitMonoSkull Nerd Font”, a customized version of [Commit Mono](https://commitmono.com) ([test drive](https://www.programmingfonts.org/#commit-mono)) patched via [NerdFonts](https://github.com/ryanoasis/nerd-fonts)
-- [Aliases](https://github.com/skullface/dotfiles/tree/main/aliases) for my most-used (or most-forgotten) commands and functions
+- Oh My Zsh + [Spaceship prompt](https://github.com/spaceship-prompt/spaceship-prompt) 🚀
+- Aliases for my most-used (or most-forgotten) commands and functions 🕵️‍♀️
+- Helpful CLI tools and programs 💻
+- MacOS customizations 🍎
+- CommitMonoSkull Nerd Font, a customized version of [Commit Mono](https://commitmono.com) ([test drive](https://www.programmingfonts.org/#commit-mono)) patched via [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts) 🔡
 
 #### Terminal profiles/themes
 
