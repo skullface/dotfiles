@@ -4,35 +4,31 @@
 
 # CLI tools
 brew "gh"
-brew "imagemagick"
+brew "pnpm"
 brew "ffmpeg"
 brew "node"
 brew "wget"
 brew "svgo"
-brew "youtube-dl"
+brew "yt-dlp"
 
 # Necessities 
 cask "1password"
-cask "arc"
 cask "google-chrome"
-cask "firefox"
 cask "fantastical"
 cask "bartender"
-cask "rectangle-pro"
-cask "telegram"
-cask "warp"
+cask "ghostty"
 cask "obsidian"
 cask "figma"
+cask "github"
 cask "visual-studio-code"
 cask "imageoptim"
 cask "contraste"
 cask "sim-daltonism"
 
 # Audio/video
-cask "audio-hjiack"
-cask "loopback"
 cask "handbrake"
 cask "cleanshot"
+cask "pixelsnap"
 cask "obs"
 cask "vlc"
 
@@ -41,6 +37,4 @@ cask "slack"
 cask "zoom"
 
 # Entertainment
-cask "discord"
-cask "kindle"
 cask "spotify"
