@@ -12,9 +12,6 @@ alias reloadbash='source ~/.bash_profile && echo "Done!"'
 alias editzsh="open ~/.zshrc"
 alias reload='source ~/.zshrc && echo -e "$fg_bold[yellow]   nice~ 👌"'
 
-# Update VS Code config
-alias editvs="open $HOME/Library/'Application Support'/Code/User/settings.json"
-
 # Homebrew helpers
 alias br="brew update"
 
@@ -23,3 +20,10 @@ alias dstore="find . -name '.DS_Store' -type f -delete"
 
 # Edit /etc/hosts file
 alias edithosts="open /etc/hosts"
+
+# Cursor
+alias c="open $1 -a \"Cursor\""
+
+# VS Code
+alias vsc="open $1 -a \"Visual Studio Code\""
+
