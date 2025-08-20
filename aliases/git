@@ -9,7 +9,7 @@ alias ghp="git checkout gh-pages && git pull origin gh-pages"
 # Commit/push/pull helpers
 alias pull="git pull"
 alias push="git push"
-alias pushf="git push --force"
+alias pushf="git push --force-with-lease"
 alias cmt="git commit -m"
 alias amd="git commit --amend -m"
 
@@ -74,7 +74,7 @@ function remain() {
   echo "⬆️ pushing"
   git push origin "$current_branch" --force-with-lease || { echo "⛔ check the remote branch status? 🤔"; return 1; }
 
-  echo "✅ rebased successfully `$current_branch`"
+  echo "✅ rebased successfully on '$current_branch'"
 }
 
 # Rebase to time travel
