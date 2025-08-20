@@ -1,0 +1,46 @@
+font-size = 13
+adjust-cell-height = 50%
+font-family = "CommitMonoSkull Nerd Font"
+
+title = "▲"
+window-title-font-family = "Geist Mono"
+
+window-theme = light
+window-colorspace = display-p3
+
+window-padding-x = 24
+window-padding-y = 24
+
+auto-update = download
+
+macos-icon = holographic
+
+macos-titlebar-proxy-icon = hidden
+
+clipboard-trim-trailing-spaces = true
+
+cursor-click-to-move = true
+cursor-style = bar
+
+palette = 0=#111111
+palette = 1=#EC2B2E
+palette = 2=#82c507
+palette = 3=#f3ab12
+palette = 4=#1fbff4
+palette = 5=#b76de8
+palette = 6=#0abdc7
+palette = 7=#ff00ea
+palette = 8=#f3ab12
+palette = 9=#EC2B2E
+palette = 10=#e1ff00
+palette = 11=#EC2B2E
+palette = 12=#1fbff4
+palette = 13=#ea6cbc
+palette = 14=#0abdc7
+palette = 15=#0040ff
+background = ffffff
+foreground = 555555
+cursor-color = 0abdc7
+cursor-text = ffffff
+selection-background = 0abdc7
+selection-foreground = ffffff
