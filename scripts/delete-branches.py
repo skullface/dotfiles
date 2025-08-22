@@ -45,65 +45,90 @@ def get_remote_branches():
     return set(cleaned)
 
 
+def parse_indices(choice, max_index):
+    """Parse a string of indices and ranges into a list of integers."""
+    indices = set()
+    parts = choice.split(",")
+    for part in parts:
+        part = part.strip()
+        if not part:
+            continue
+        if "-" in part:
+            try:
+                start, end = map(int, part.split("-", 1))
+                if start > end:
+                    start, end = end, start  # allow reversed ranges
+                for i in range(start, end + 1):
+                    if 1 <= i <= max_index:
+                        indices.add(i)
+            except ValueError:
+                print(f"{RED}Invalid range: {part}{RESET}")
+        else:
+            try:
+                i = int(part)
+                if 1 <= i <= max_index:
+                    indices.add(i)
+                else:
+                    print(f"{RED}Invalid branch number: {i}{RESET}")
+            except ValueError:
+                print(f"{RED}Invalid input: {part}{RESET}")
+    return sorted(indices)
+
+
 def main():
     local_branches = get_local_branches()
     remote_branches = get_remote_branches()
 
     print(f"\n{BOLD}All local branches:{RESET}\n")
-    marked_for_deletion = []
-
     for i, branch in enumerate(local_branches, start=1):
         has_remote = branch in remote_branches
         status_color = GREEN if has_remote else YELLOW
-        status = f"{status_color}[remote exists]{RESET}" if has_remote else f"{status_color}[no remote]{RESET}"
+        status = (
+            f"{status_color}[remote exists]{RESET}"
+            if has_remote
+            else f"{status_color}[no remote]{RESET}"
+        )
         print(f"{BOLD}{i}{RESET}. {branch} {status}")
 
     print("\n🌳🗑️")
     print(f"{BOLD}Enter branch number to mark for deletion{RESET}.")
-    print("Comma-separated. Example: 1,3,5")
-    print("Leave empty to skip.\n")
+    print("Supports comma-separated and ranges. Example: 1,3,5,10-12")
+    print("Leave empty to skip.")
 
-    choice = input(f"{BOLD}Which branch do you want to delete? {RESET}\n👉 ").strip()
+    choice = input(f"👉 ").strip()
     if not choice:
-        print("No branch selected. Exiting.")
+        print("\n⚠️ No branch selected.")
         return
 
-    try:
-        indices = [int(x.strip()) for x in choice.split(",")]
-    except ValueError:
-        print(f"{RED}Invalid input. Please enter numbers separated by commas.{RESET}")
-        return
-
-    for idx in indices:
-        if 1 <= idx <= len(local_branches):
-            marked_for_deletion.append(local_branches[idx - 1])
-        else:
-            print(f"{RED}Invalid branch number: {idx}{RESET}")
+    indices = parse_indices(choice, len(local_branches))
+    marked_for_deletion = [local_branches[i - 1] for i in indices]
 
     if not marked_for_deletion:
-        print("No valid branch selected. Exiting.")
+        print("\n⚠️ No valid branch selected..")
         return
 
     print(f"\n{BOLD}Marked for deletion:{RESET}")
     for b in marked_for_deletion:
         print(f"{RED}-{RESET} {b}")
-    
-    confirm = input(f"\n{BOLD}Do you want to delete above branch(es)?{RESET} (y/N)\n👉 ").strip().lower()
-    if confirm != "y":
-        print("\nNo branch deleted. Exiting.")
+
+    confirm = input(
+        f"\n{BOLD}Do you want to delete the above {len(marked_for_deletion)} branch"
+        f"{'es' if len(marked_for_deletion) > 1 else ''}?{RESET} (y/N)\n👉 "
+    ).strip().lower()
+    if confirm not in ("y", "yes"):
+        print("\n⚠️ No branch deleted.")
         return
 
     if marked_for_deletion:
-        print(f"\n{BOLD}Deleting…{RESET}")
+        print(f"\n{BOLD}Cleaning up…{RESET}")
         for b in marked_for_deletion:
-            result = subprocess.run(["git", "branch", "-D", b], capture_output=True, text=True)
+            result = subprocess.run(
+                ["git", "branch", "-D", b], capture_output=True, text=True
+            )
             if result.returncode == 0:
                 print(f"✅ Deleted `{b}` successfully.")
             else:
                 print(f"{RED}Error{RESET} deleting {b}:\n{result.stderr}")
-
-    print("\nDone!\n🌳🗑️")
-
 
 if __name__ == "__main__":
     main()

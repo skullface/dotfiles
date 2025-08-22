@@ -59,14 +59,14 @@ gitclean() {
     return 0
   fi
 
-  echo "🌳🗑️"
   echo -e "${BOLD}Local branches with no remote counterpart:${RESET}"
   # Display branches in 2 columns using the raw string, which pr handles well
   echo "$local_branches_raw" | pr -2 -t
   echo "" # Spacing
 
   # Use the accurate line count for the prompt
-  echo -n -e "${BOLD}Do you want to delete ${RED}${BOLD}${local_branch_count}${RESET}${BOLD} branches?${RESET} (y/N)\n👉 "
+  echo "🌳🗑️"
+  echo -n -e "${BOLD}Do you want to delete ${local_branch_count} branches?${RESET}${RESET} (y/N)\n👉 "
   read confirmation
 
   if [[ "$confirmation" =~ ^[Yy][Ee][Ss]$ ]]; then
@@ -92,7 +92,7 @@ gitclean() {
     echo "🌳🗑️"
   else
     echo ""
-    echo -e "⚠️ Deletion cancelled."
+    echo -e "⚠️ No branches deleted."
   fi
 }
 
@@ -139,7 +139,7 @@ function remain() {
   current_branch=$(git rev-parse --abbrev-ref HEAD) || { echo "⛔ you’re not in a git repo???"; return 1; }
 
   echo "🐶 fetching origin"
-  git fetch origin || { echo "⛔ fetch failed… woof 💀";return 1; }
+  git fetch origin || { echo "⛔ fetch failed… woof 💀"; return 1; }
   
   echo "💿 rebasing"
   git rebase origin/main || { echo "⛔ resolve conflicts first 😵‍💫"; return 1; }
