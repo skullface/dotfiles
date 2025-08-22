@@ -1,0 +1,221 @@
+#!/usr/bin/env bash
+
+# git-clean
+# Interactive Git branch cleanup tool
+# Default: interactive selection
+# --all: delete all local branches without a remote
+# 🌳🗑️
+
+# ANSI escape codes
+BOLD='\033[1m'
+RESET='\033[0m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+
+# Defaults
+MODE="interactive"
+
+# Ensure we are inside a git repo
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+  printf "🚫 %bError:%b Not in a Git repository.\n" "${RED}${BOLD}" "${RESET}"
+  exit 1
+fi
+
+# Parse args
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --all)
+      MODE="all"
+      ;;
+    -h|--help)
+      printf "Usage: gitclean [--all]\n"
+      printf "  --all      Delete all local branches without a remote\n"
+      printf "  -h, --help Show this help message\n"
+      exit 0
+      ;;
+    *)
+      printf "🚫 %bError:%b Unknown option: %s\n" "${RED}${BOLD}" "${RESET}" "$1"
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+# Helper: parse user input ranges
+parse_indices() {
+  local choice="$1"
+  local max_index="$2"
+  local indices=()
+  IFS=',' read -ra parts <<<"$choice"
+  for part in "${parts[@]}"; do
+    part=$(echo "$part" | xargs) # trim
+    if [[ -z "$part" ]]; then
+      continue
+    fi
+    if [[ "$part" == *"-"* ]]; then
+      local start=${part%-*}
+      local end=${part#*-}
+      if ! [[ "$start" =~ ^[0-9]+$ && "$end" =~ ^[0-9]+$ ]]; then
+        printf "%bInvalid range:%b %s\n" "$RED" "$RESET" "$part"
+        continue
+      fi
+      if ((start > end)); then
+        local tmp=$start
+        start=$end
+        end=$tmp
+      fi
+      for ((i = start; i <= end; i++)); do
+        if ((i >= 1 && i <= max_index)); then
+          indices+=("$i")
+        fi
+      done
+    else
+      if [[ "$part" =~ ^[0-9]+$ ]]; then
+        if ((part >= 1 && part <= max_index)); then
+          indices+=("$part")
+        else
+          printf "%bInvalid branch number:%b %s\n" "$RED" "$RESET" "$part"
+        fi
+      else
+        printf "%bInvalid input:%b %s\n" "$RED" "$RESET" "$part"
+      fi
+    fi
+  done
+  # Deduplicate and sort
+  printf "%s\n" "${indices[@]}" | sort -n | uniq
+}
+
+# Mode 1: Delete all orphaned branches
+all_mode() {
+  local local_branches_raw
+  local local_branch_count
+
+  local_branches_raw=$(git branch -vv | awk '/: gone]/{print $1}')
+  local_branch_count=$(echo "$local_branches_raw" | grep -c .)
+
+  if [ "$local_branch_count" -eq 0 ]; then
+    printf "%bSuccess:%b No local branches without a remote found to clean.\n\n" "${GREEN}${BOLD}" "${RESET}"
+    return 0
+  fi
+
+  printf "\n%bLocal branches with no remote counterpart:%b\n" "$BOLD" "$RESET"
+  echo "$local_branches_raw" | pr -2 -t
+  printf "\n🌳🗑️\n"
+  printf "%bDo you want to delete %d branches?%b (y/N)\n👉 " "$BOLD" "$local_branch_count" "$RESET"
+  read -r confirmation
+
+  if [[ "$confirmation" =~ ^[Yy]([Ee][Ss])?$ ]]; then
+    printf "\n%bDeleting branches…%b\n" "$GREEN$BOLD" "$RESET"
+
+    while IFS= read -r branch; do
+      [[ -z "$branch" ]] && continue
+      if [[ "$branch" == "$(git rev-parse --abbrev-ref HEAD)" ]]; then
+        printf "⚠️ %bSkipping current branch:%b %s\n" "$YELLOW" "$RESET" "$branch"
+        continue
+      fi
+      if git branch -d "$branch"; then
+        printf "✅ %bDeleted%b %s\n" "$GREEN" "$RESET" "$branch"
+      else
+        printf "⛔ %bFailed%b to delete %s\n" "$RED" "$RESET" "$branch"
+      fi
+    done <<<"$local_branches_raw"
+
+    printf "\n%bCleanup process complete.%b\n🌳🗑️\n" "$GREEN$BOLD" "$RESET"
+  else
+    printf "\n⚠️ %bExiting:%b No branches deleted.\n" "$YELLOW$BOLD" "$RESET"
+  fi
+}
+
+# Mode 2: Interactive selection (default)
+interactive_mode() {
+  local_branches=()
+  while IFS= read -r line; do
+    local_branches+=("$line")
+  done < <(git for-each-ref --format="%(refname:short)" refs/heads/)
+
+  branch_info=()
+  while IFS= read -r line; do
+    branch_info+=("$line")
+  done < <(git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads/)
+
+  # Collect branches marked as gone
+  gone_branches=$(git branch -vv | awk '/: gone]/{print $1}')
+
+  printf "\n%bAll local branches:%b\n\n" "$BOLD" "$RESET"
+  for ((i=0; i<${#branch_info[@]}; i++)); do
+    branch=$(awk '{print $1}' <<<"${branch_info[$i]}")
+    upstream=$(awk '{print $2}' <<<"${branch_info[$i]}")
+
+    if grep -qx "$branch" <<<"$gone_branches"; then
+      status="${RED}[remote gone]${RESET}"
+    elif [[ -n "$upstream" ]]; then
+      status="${GREEN}[remote exists]${RESET}"
+    else
+      status="${YELLOW}[no remote]${RESET}"
+    fi
+
+    printf "%b%d%b. %s %b\n" "$BOLD" $((i + 1)) "$RESET" "$branch" "$status"
+  done
+
+  printf "\n🌳🗑️\n"
+  printf "%bEnter branch number(s) to mark for deletion%b.\n" "$BOLD" "$RESET"
+  printf "Supports comma-separated and ranges. Example: 1,3,5,10-12\n"
+  printf "Leave empty to skip.\n👉 "
+  read -r choice
+
+  if [[ -z "$choice" ]]; then
+    printf "\n⚠️ %bExiting:%b No branch selected.\n" "$YELLOW$BOLD" "$RESET"
+    return
+  fi
+
+  indices=()
+  while IFS= read -r line; do
+    indices+=("$line")
+  done < <(parse_indices "$choice" "${#local_branches[@]}")
+
+  if [[ ${#indices[@]} -eq 0 ]]; then
+    printf "\n⚠️ %bExiting:%b No valid branch selected.\n" "$YELLOW$BOLD" "$RESET"
+    return
+  fi
+
+  printf "\n%bMarked for deletion:%b\n" "$BOLD" "$RESET"
+  marked_for_deletion=()
+  for idx in "${indices[@]}"; do
+    branch="${local_branches[$((idx - 1))]}"
+    marked_for_deletion+=("$branch")
+    printf "%b-%b %s\n" "$RED" "$RESET" "$branch"
+  done
+
+  printf "\n%bDo you want to delete the above %d branch(es)?%b (y/N)\n👉 " "$BOLD" "${#marked_for_deletion[@]}" "$RESET"
+  read -r confirm
+  confirm=$(echo "$confirm" | tr '[:upper:]' '[:lower:]')
+  if [[ "$confirm" != "y" && "$confirm" != "yes" ]]; then
+    printf "\n⚠️ %bExiting:%b No branch deleted.\n" "$YELLOW$BOLD" "$RESET"
+    return
+  fi
+
+  printf "\n%bCleaning up…%b\n" "$BOLD" "$RESET"
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  for b in "${marked_for_deletion[@]}"; do
+    if [[ "$b" == "$current_branch" ]]; then
+      printf "⚠️ %bSkipping current branch:%b %s\n" "$YELLOW" "$RESET" "$b"
+      continue
+    fi
+    if git branch -D "$b" &>/dev/null; then
+      printf "✅ Deleted %b%s%b successfully.\n" "$BOLD" "$b" "$RESET"
+    else
+      printf "⛔ %bError%b deleting %s\n" "$RED" "$RESET" "$b"
+    fi
+  done
+}
+
+# Run mode
+EXIT_CODE=0
+if [[ "$MODE" == "all" ]]; then
+  all_mode || EXIT_CODE=1
+else
+  interactive_mode || EXIT_CODE=1
+fi
+
+exit $EXIT_CODE
