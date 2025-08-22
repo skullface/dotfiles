@@ -10,7 +10,7 @@ alias reloadshell="exec ${SHELL} -l"
 alias editbash="open ~/.bash_profile"
 alias reloadbash='source ~/.bash_profile && echo "Done!"'
 alias editzsh="open ~/.zshrc"
-alias reload='source ~/.zshrc && echo -e "$fg_bold[yellow]   nice~ 👌"'
+alias reload='source ~/.zshrc && echo -e "$fg_bold[yellow]nice~ 👌"'
 
 # Homebrew helpers
 alias br="brew update"
