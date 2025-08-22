@@ -4,7 +4,6 @@
 
 # Switch to source-of-truth branch and make sure it’s up to date with the remote
 alias m="git checkout main && git pull origin main"
-alias ghp="git checkout gh-pages && git pull origin gh-pages"
 
 # Commit/push/pull helpers
 alias pull="git pull"
@@ -21,6 +20,80 @@ alias last="git log -1 HEAD"
 function gitfucked {
   branch=$(git symbolic-ref --short HEAD)
   git fetch origin && git reset --hard origin/$branch
+}
+
+# Delete all local branches without a remote
+gitclean() {
+  # ANSI escape codes for formatting
+  local BOLD='\033[1m'
+  local RESET='\033[0m'
+  local GREEN='\033[0;32m'
+  local YELLOW='\033[0;33m'
+  local RED='\033[0;31m'
+
+  echo "" # Add a leading blank line for spacing
+
+  if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+    echo -e "${RED}${BOLD}Error:${RESET} Not in a Git repository."
+    echo ""
+    return 1
+  fi
+
+  # Get local branches that have no remote tracking branch (or remote branch is gone)
+  # This command specifically looks for branches where the remote tracking branch is "[gone]"
+  local_branches_raw=$(git branch -vv | grep ': gone]' | awk '{print $1}')
+
+  # Count the number of lines (branches) in the raw output
+  # Use head -n -1 to remove a trailing newline if it exists, as wc -l counts that as a line.
+  local_branch_count=$(echo "$local_branches_raw" | grep -c .) # Count non-empty lines
+
+  # Fallback to 0 if count is empty or not a number
+  if ! [[ "$local_branch_count" =~ ^[0-9]+$ ]]; then
+      local_branch_count=0
+  fi
+
+
+  if [ "$local_branch_count" -eq 0 ]; then
+    echo -e "${GREEN}${BOLD}Success:${RESET} No local branches without a remote found to clean."
+    echo ""
+    return 0
+  fi
+
+  echo "🌳🗑️"
+  echo -e "${BOLD}Local branches with no remote counterpart:${RESET}"
+  # Display branches in 2 columns using the raw string, which pr handles well
+  echo "$local_branches_raw" | pr -2 -t
+  echo "" # Spacing
+
+  # Use the accurate line count for the prompt
+  echo -n -e "${BOLD}Do you want to delete ${RED}${BOLD}${local_branch_count}${RESET}${BOLD} branches?${RESET} (y/N)\n👉 "
+  read confirmation
+
+  if [[ "$confirmation" =~ ^[Yy][Ee][Ss]$ ]]; then
+    echo "" # Spacing
+    echo -e "${GREEN}${BOLD}Deleting branches…${RESET}"
+
+    # Convert the newline-separated string into an array for safer iteration during deletion
+    IFS=$'\n' read -rA branch_array <<< "$local_branches_raw"
+
+    for branch in "${branch_array[@]}"; do
+      # Ensure we only try to delete non-empty branch names
+      if [[ -n "$branch" ]]; then
+        git branch -d "$branch"
+        if [ $? -eq 0 ]; then
+          echo -e "✅ ${GREEN}Deleted${RESET} $branch"
+        else
+          echo -e "⛔ ${RED}Failed${RESET} to delete $branch"
+        fi
+      fi
+    done
+    echo ""
+    echo -e "${GREEN}${BOLD}Cleanup process complete.${RESET}"
+    echo "🌳🗑️"
+  else
+    echo ""
+    echo -e "⚠️ Deletion cancelled."
+  fi
 }
 
 # Interactive history helper
