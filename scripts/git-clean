@@ -12,6 +12,7 @@ RESET='\033[0m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
+DIM='\033[2m'
 
 # Defaults
 MODE="interactive"
@@ -114,10 +115,13 @@ all_mode() {
         printf "⚠️ %bSkipping current branch:%b %s\n" "$YELLOW" "$RESET" "$branch"
         continue
       fi
-      if git branch -d "$branch"; then
+      delete_output=$(git branch -D "$branch" 2>&1)
+      if [[ $? -eq 0 ]]; then
         printf "✅ %bDeleted%b %s\n" "$GREEN" "$RESET" "$branch"
+        printf "%b%s%b\n" "$DIM" "$delete_output" "$RESET"
       else
         printf "⛔ %bFailed%b to delete %s\n" "$RED" "$RESET" "$branch"
+        printf "%b%s%b\n" "$DIM" "$delete_output" "$RESET"
       fi
     done <<<"$local_branches_raw"
 
@@ -202,10 +206,13 @@ interactive_mode() {
       printf "⚠️ %bSkipping current branch:%b %s\n" "$YELLOW" "$RESET" "$b"
       continue
     fi
-    if git branch -D "$b" &>/dev/null; then
+    delete_output=$(git branch -D "$b" 2>&1)
+    if [[ $? -eq 0 ]]; then
       printf "✅ Deleted %b%s%b successfully.\n" "$BOLD" "$b" "$RESET"
+      printf "%b%s%b\n" "$DIM" "$delete_output" "$RESET"
     else
       printf "⛔ %bError%b deleting %s\n" "$RED" "$RESET" "$b"
+      printf "%b%s%b\n" "$DIM" "$delete_output" "$RESET"
     fi
   done
 }
