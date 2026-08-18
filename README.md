@@ -19,10 +19,7 @@ Included in the install script:
 
 #### Terminal profiles/themes
 
-- Ghostty: `terminal/ghostty` 🌟
-- Warp: `terminal/warp` 🪦
-- iTerm2: `terminal/Cassette.json` with [Hardcore](https://github.com/hardcore/iTerm-colors/blob/master/hardcore.itermcolors) color scheme 🪦
-- Terminal: `terminal/Cassette.terminal` 🪦
+- Ghostty: `terminal/config.ghostty` 👻
 
 #### Cursor/VS Code settings
 
