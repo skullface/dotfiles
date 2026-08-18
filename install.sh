@@ -46,9 +46,13 @@ eval "$(fnm env)"
 fnm install --lts
 fnm default lts-latest
 
-# Customize Terminal: download and install custom font
-wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CommitMono.zip
-mv CommitMono.zip ~/Downloads/CommitMono.zip 
+# Customize Terminal: install custom font from this repo
+echo -e "\\n\\n🔡 Installing CommitMonoSkull Nerd Font…"
+echo "=================================================="
+FONT_DIR="$(cd "$(dirname "$0")" && pwd)/font"
+mkdir -p ~/Library/Fonts
+cp "$FONT_DIR"/*.otf ~/Library/Fonts/
+echo "✅ Fonts installed" 
 
 # Customize Terminal: ohmyzsh
 echo -e "\\n\\n💻 Customizing command line with ohmyzsh…"
