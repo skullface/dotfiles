@@ -8,6 +8,9 @@ alias editbash="open ~/.bash_profile"
 alias reloadbash='source ~/.bash_profile && echo "Done!"'
 alias reloadshell="exec ${SHELL} -l"
 
+# The laziest install ever
+alias i="pnpm install"
+
 # Homebrew helper
 alias br="brew update"
 
