@@ -1,18 +1,14 @@
-#  ———————————————————————————————————————————————————————————————————————————
-#  Dev environment
-#  ———————————————————————————————————————————————————————————————————————————
-
-# Update/reload git config
-alias editgit="open ~/.gitconfig"
+#  General aliases
+# =====================
 
 # Update/reload shell configs
-alias reloadshell="exec ${SHELL} -l"
+alias reload='source ~/.zshrc && echo -e "$fg_bold[yellow]nice~ 👌"'
+alias editzsh="open ~/.zshrc"
 alias editbash="open ~/.bash_profile"
 alias reloadbash='source ~/.bash_profile && echo "Done!"'
-alias editzsh="open ~/.zshrc"
-alias reload='source ~/.zshrc && echo -e "$fg_bold[yellow]nice~ 👌"'
+alias reloadshell="exec ${SHELL} -l"
 
-# Homebrew helpers
+# Homebrew helper
 alias br="brew update"
 
 # Remove .DS_Store, mine enemy!
@@ -21,9 +17,24 @@ alias dstore="find . -name '.DS_Store' -type f -delete"
 # Edit /etc/hosts file
 alias edithosts="open /etc/hosts"
 
-# Cursor
+# Navigation helpers
+alias ..="cd .."
+alias ls="ls -GFh"
+
+# Open Cursor
 alias c="open $1 -a \"Cursor\""
 
-# VS Code
-alias vsc="open $1 -a \"Visual Studio Code\""
+# Flush DNS
+alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
+# WHOIS lookup
+# Use: `whois <domain.com>`
+function whois() {
+  command whois $(echo $1 | sed -e 's|https?://||' -e 's|/||g')
+}
+
+# youtube-dl 
+alias rip="yt-dlp"
+alias ripVideo="yt-dlp -f 'bestvideo' --recode-video mp4"
+alias ripAudio="yt-dlp -f 'bestaudio' --recode-video mp4"
+alias subs="yt-dlp --recode-video mp4 --write-sub"

@@ -1,25 +1,55 @@
-#  ———————————————————————————————————————————————————————————————————————————
-#  Git
-#  ———————————————————————————————————————————————————————————————————————————
+#  Git aliases
+# =====================
 
-# Switch to source-of-truth branch and make sure it’s up to date with the remote
+# Switch to source-of-truth branch 
+# Make sure it’s up-to-date with remote
 alias m="git checkout main && git pull origin main"
 
 # Commit/push/pull helpers
 alias pull="git pull"
 alias push="git push"
 alias pushf="git push --force-with-lease"
+alias add="git add ."
 alias cmt="git commit -m"
 alias amd="git commit --amend -m"
 
-# View details of the last commit
-alias last="git log -1 HEAD"
-
-# Tell your local changes to fuck off by resetting to the remote
+# Tell local changes to fuck off by resetting to the remote
 # Use: `gitfucked`
 function gitfucked {
   branch=$(git symbolic-ref --short HEAD)
   git fetch origin && git reset --hard origin/$branch
+}
+
+# Interactive rebase helper
+# Use: `rebase <# of commits>`
+function rebase {
+  git rebase -i HEAD~${1:?"Specify the number of commits to go back in time."}
+}
+
+# Clean branches with script
+alias gitclean="bash ~/Personal/dotfiles/scripts/git-clean.sh"
+
+# View details of the last commit
+alias last="git log -1 HEAD"
+
+# Rebase to time travel
+alias redate="git rebase --committer-date-is-author-date"
+
+# Rebase to latest main
+function remain() {
+  local current_branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD) || { echo "⛔ you’re not in a git repo???"; return 1; }
+
+  echo "🐶 fetching origin"
+  git fetch origin || { echo "⛔ fetch failed… woof 💀"; return 1; }
+  
+  echo "💿 rebasing"
+  git rebase origin/main || { echo "⛔ resolve conflicts first 😵‍💫"; return 1; }
+
+  echo "⬆️ pushing"
+  git push origin "$current_branch" --force-with-lease || { echo "⛔ check the remote branch status? 🤔"; return 1; }
+
+  echo "✅ rebased successfully on '$current_branch'"
 }
 
 # Interactive history helper
@@ -53,32 +83,6 @@ function hist() {
   eval "$git_command"
 }
 
-# Interactive rebase helper
-# Use: `rebase <# of commits>`
-function rebase {
-  git rebase -i HEAD~${1:?"Specify the number of commits to go back in time."}
-}
-
-# Rebase to latest main
-function remain() {
-  local current_branch
-  current_branch=$(git rev-parse --abbrev-ref HEAD) || { echo "⛔ you’re not in a git repo???"; return 1; }
-
-  echo "🐶 fetching origin"
-  git fetch origin || { echo "⛔ fetch failed… woof 💀"; return 1; }
-  
-  echo "💿 rebasing"
-  git rebase origin/main || { echo "⛔ resolve conflicts first 😵‍💫"; return 1; }
-
-  echo "⬆️ pushing"
-  git push origin "$current_branch" --force-with-lease || { echo "⛔ check the remote branch status? 🤔"; return 1; }
-
-  echo "✅ rebased successfully on '$current_branch'"
-}
-
-# Rebase to time travel
-alias redate="git rebase --committer-date-is-author-date"
-
 # Stash helpers
 alias stash="git stash"
 alias stash+="git stash pop"
@@ -93,3 +97,6 @@ alias delete="git branch -d"
 alias Delete="git branch -D"
 alias deleteBranches="git for-each-ref --format '%(refname:short)' refs/heads | grep -v 'main' | xargs git branch -D"
 alias branches="git branch -a"
+
+# Check git config
+alias editgit="open ~/.gitconfig"
