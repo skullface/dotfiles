@@ -1,6 +1,5 @@
-#  ———————————————————————————————————————————————————————————————————————————
-#  Tell Homebrew what to do when we run `brew bundle`
-#  ———————————————————————————————————————————————————————————————————————————
+#  Contents of `brew bundle`
+# =====================
 
 # CLI tools
 brew "pnpm"
@@ -10,12 +9,12 @@ brew "wget"
 brew "ffmpeg"
 brew "svgo"
 brew "yt-dlp"
+brew "fzf"
 
 # Necessities 
 cask "1password"
 cask "google-chrome"
 cask "fantastical"
-cask "bartender"
 cask "ghostty"
 cask "obsidian"
 cask "figma"
