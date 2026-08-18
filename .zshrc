@@ -1,19 +1,8 @@
-#  ———————————————————————————————————————————————————————————————————————————
-#  Customize zsh
-#  ———————————————————————————————————————————————————————————————————————————
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# source $HOME/.bash_profile
-
-# Path to your oh-my-zsh installation.
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 
-# Homebrew
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # Spaceship ZSH
-# ===========================================================================
+# =====================
 
 # Customize Spaceship ZSH with variables defined before the theme
 SPACESHIP_GIT_SYMBOL=" "
@@ -26,7 +15,7 @@ SPACESHIP_CHAR_SYMBOL=" "
 ZSH_THEME="spaceship"
 
 # oh-my-zsh settings
-# ===========================================================================
+# =====================
 
 DISABLE_AUTO_TITLE="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -34,37 +23,26 @@ COMPLETION_WAITING_DOTS="true"
 
 HIST_STAMPS="yyyy.mm.dd"
 
-plugins=(git tmux zsh-interactive-cd)
+# Plugins must be defined before sourcing oh-my-zsh
+plugins=(git tmux zsh-interactive-cd zsh-autosuggestions)
 
 # Sources
-# ===========================================================================
+# =====================
 
-# ohmyzsh
+# oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# Default to Cursor or vim as text editors
+export EDITOR="cursor --wait"
+export VISUAL="$EDITOR"
+export GIT_EDITOR="vim"
+export GIT_SEQUENCE_EDITOR="vim"
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# NPM
-export PATH="$HOME/.npm-packages/bin:$PATH"
-export PATH=$PATH:$(npm prefix -g)/bin
-
-# pnpm
-export PNPM_HOME=$HOME/Library/pnpm
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# Golang
-export GOPATH=$HOME/gospace
-export GOROOT=/usr/local/opt/go/libexec
-export GOBIN=$HOME/gospace/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Python3 https://opensource.com/article/19/5/python-3-default-mac
 export PYENV_ROOT="$HOME/.pyenv"
@@ -73,6 +51,17 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# opencode
+export PATH=/Users/skull/.opencode/bin:$PATH
+
+# pnpm
+export PNPM_HOME="/Users/skull/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # Find all my dotfiles~
 typeset -U config_files
@@ -84,10 +73,9 @@ do
   source $file
 done
 
-export EDITOR="/Applications/'Visual Studio Code.app'/Contents/MacOS/Electron"
-
-# Spaceship ZSH: Customize with variables defined after the theme
-# ===========================================================================
+# More Sapceship customization 
+# with variables defined after the theme
+# =====================
 
 echo "                                                       "
 echo "    ‘7MMF’   ‘7MF’      (˶• ◡ •˶ )づ .*.ﾟ ▲      ‘7MM   "
@@ -173,5 +161,11 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 
-# Use VS Code as editor of choice
-export EDITOR="code --wait"
+# More colors
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='none'
+ZSH_HIGHLIGHT_STYLES[arg0]='none'
+
+# Syntax highlighting must be sourced last
+source /Users/skull/Personal/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
