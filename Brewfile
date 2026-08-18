@@ -4,7 +4,7 @@
 # CLI tools
 brew "pnpm"
 brew "gh"
-brew "node"
+brew "fnm"
 brew "wget"
 brew "ffmpeg"
 brew "svgo"
