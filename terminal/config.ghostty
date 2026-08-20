@@ -24,14 +24,14 @@ cursor-click-to-move = true
 cursor-style = bar
 
 palette = 0=#111111
-palette = 1=#EC2B2E
+palette = 1=#ec2b2e
 palette = 2=#82c507
 palette = 3=#f3ab12
 palette = 4=#1fbff4
 palette = 5=#b76de8
 palette = 6=#0abdc7
 palette = 7=#999999
-palette = 8=#EC2B2E
+palette = 8=#ea6cbc
 palette = 9=#82c507
 palette = 10=#f3ab12
 palette = 11=#1fbff4
