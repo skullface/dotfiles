@@ -39,9 +39,10 @@ palette = 12=#b76de8
 palette = 13=#0abdc7
 palette = 14=#999999
 palette = 15=#ea6cbc
-background = ffffff
-foreground = 555555
-cursor-color = 0abdc7
-cursor-text = ffffff
-selection-background = 0abdc7
-selection-foreground = ffffff
+palette = 15=#ea6cbc
+background = #ffffff
+foreground = #555555
+cursor-color = #0abdc7
+cursor-text = #ffffff
+selection-background = #0abdc7
+selection-foreground = #ffffff
